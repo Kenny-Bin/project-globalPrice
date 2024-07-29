@@ -1,8 +1,8 @@
 <?php
 namespace App\Services;
 
-use App\Models\GlobalPrice\GlobalPriceSModel;
-use App\Models\GlobalPrice\GlobalPriceMModel;
+use App\Models\GlobalPrice\GlobalPriceModel;
+use App\Models\GlobalPrice\GlobalPriceModel;
 use PhpOffice\PhpSpreadsheet\Exception;
 
 class GlobalPriceService
@@ -19,119 +19,119 @@ class GlobalPriceService
 
     public function getGlobalPriceBrandList()
     {
-        $globalPriceSM = new GlobalPriceSModel();
+        $globalPriceSM = new GlobalPriceModel();
 
         return $globalPriceSM->getGlobalPriceBrandList();
     }
 
     public function getGlobalPriceBranchList($brandCode, $corpCode)
     {
-        $globalPriceSM = new GlobalPriceSModel();
+        $globalPriceSM = new GlobalPriceModel();
 
         return $globalPriceSM->getGlobalPriceBranchList($brandCode, $corpCode);
     }
 
     public function getApplyCorpList($brandCode, $corpCode)
     {
-        $globalPriceSM = new GlobalPriceSModel();
+        $globalPriceSM = new GlobalPriceModel();
 
         return $globalPriceSM->getApplyCorpList($brandCode, $corpCode);
     }
 
     public function getCategoryCodeList($param)
     {
-        $globalPriceSM = new GlobalPriceSModel();
+        $globalPriceSM = new GlobalPriceModel();
 
         return $globalPriceSM->getCategoryCodeList($param);
     }
 
     public function getTreamentCodeList($param)
     {
-        $globalPriceSM = new GlobalPriceSModel();
+        $globalPriceSM = new GlobalPriceModel();
 
         return $globalPriceSM->getTreamentCodeList($param);
     }
 
     public function getTreamentPriceList($param)
     {
-        $globalPriceSM = new GlobalPriceSModel();
+        $globalPriceSM = new GlobalPriceModel();
 
         return $globalPriceSM->getTreamentPriceList($param);
     }
 
     public function getParentCategoryInfo($idx)
     {
-        $globalPriceSM = new GlobalPriceSModel();
+        $globalPriceSM = new GlobalPriceModel();
 
         return $globalPriceSM->getParentCategoryInfo($idx);
     }
 
     public function getTreatmentInfo($idx)
     {
-        $globalPriceSM = new GlobalPriceSModel();
+        $globalPriceSM = new GlobalPriceModel();
 
         return $globalPriceSM->getTreatmentInfo($idx);
     }
 
     public function getPriceInfo($idx)
     {
-        $globalPriceSM = new GlobalPriceSModel();
+        $globalPriceSM = new GlobalPriceModel();
 
         return $globalPriceSM->getPriceInfo($idx);
     }
 
     public function getCategorySortCount($brandCode, $corpCode, $lvl, $pIdx)
     {
-        $globalPriceSM = new GlobalPriceSModel();
+        $globalPriceSM = new GlobalPriceModel();
 
         return $globalPriceSM->getCategorySortCount($brandCode, $corpCode, $lvl, $pIdx);
     }
 
     public function getTreatmentSortCount($brandCode, $corpCode, $pIdx)
     {
-        $globalPriceSM = new GlobalPriceSModel();
+        $globalPriceSM = new GlobalPriceModel();
 
         return $globalPriceSM->getTreatmentSortCount($brandCode, $corpCode, $pIdx);
     }
 
     public function modifyCategoryProc($data, $where)
     {
-        $globalPriceMM = new GlobalPriceMModel();
+        $globalPriceMM = new GlobalPriceModel();
 
         return $globalPriceMM->modifyCategoryProc($data, $where);
     }
 
     public function modifyTreatmentProc($data, $where)
     {
-        $globalPriceMM = new GlobalPriceMModel();
+        $globalPriceMM = new GlobalPriceModel();
 
         return $globalPriceMM->modifyTreatmentProc($data, $where);
     }
 
     public function modifyPriceProc($data, $where)
     {
-        $globalPriceMM = new GlobalPriceMModel();
+        $globalPriceMM = new GlobalPriceModel();
 
         return $globalPriceMM->modifyPriceProc($data, $where);
     }
 
     public function registerCategoryProc($param)
     {
-        $globalPriceMM = new GlobalPriceMModel();
+        $globalPriceMM = new GlobalPriceModel();
 
         return $globalPriceMM->registerCategoryProc($param);
     }
 
     public function registerTreatmentProc($param)
     {
-        $globalPriceMM = new GlobalPriceMModel();
+        $globalPriceMM = new GlobalPriceModel();
 
         return $globalPriceMM->registerTreatmentProc($param);
     }
 
     public function registerPriceProc($param)
     {
-        $globalPriceMM = new GlobalPriceMModel();
+        $globalPriceMM = new GlobalPriceModel();
 
         return $globalPriceMM->registerPriceProc($param);
     }
@@ -139,8 +139,8 @@ class GlobalPriceService
     public function deleteProc($info, $data, $where)
     {
 
-        $globalPriceSM = new GlobalPriceSModel();
-        $globalPriceMM = new GlobalPriceMModel();
+        $globalPriceSM = new GlobalPriceModel();
+        $globalPriceMM = new GlobalPriceModel();
 
         $result = [
             'result' => false,
@@ -258,7 +258,7 @@ class GlobalPriceService
 
     public function categorySortProc($data)
     {
-        $globalPriceMM = new GlobalPriceMModel();
+        $globalPriceMM = new GlobalPriceModel();
 
         $result = [
             'result' => false,
@@ -338,8 +338,8 @@ class GlobalPriceService
 
     public function branchSortProc($sqlData, $data)
     {
-        $globalPriceSM = new GlobalPriceSModel();
-        $globalPriceMM = new GlobalPriceMModel();
+        $globalPriceSM = new GlobalPriceModel();
+        $globalPriceMM = new GlobalPriceModel();
 
         $result = [
             'result' => false,
@@ -397,7 +397,7 @@ class GlobalPriceService
 
     public function chgState($lvl, $modifyData, $data)
     {
-        $globalPriceMM = new GlobalPriceMModel();
+        $globalPriceMM = new GlobalPriceModel();
 
         $result = [
             'result' => false,

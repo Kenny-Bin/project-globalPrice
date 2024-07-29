@@ -2,13 +2,12 @@
 
 namespace App\Models\GlobalPrice;
 
-use App\Models\ReplicaModel;
 
-class GlobalPriceSModel extends ReplicaModel
+class GlobalPriceModel extends BaseModel
 {
     public function getGlobalPriceBrandList()
     {
-        $builder = $this->db->table('tbl_corpBrand');
+        $builder = $this->db->table('CORP_BRAND');
         $builder->select('brandCode, brandName');
         $builder->whereIn('brandCode', ['T', 'B']);
 
@@ -19,7 +18,7 @@ class GlobalPriceSModel extends ReplicaModel
 
     public function getGlobalPriceBranchList($brandCode, $corpCode)
     {
-        $builder = $this->db->table('tbl_globalBrandBranch AS gb');
+        $builder = $this->db->table('GLOBAL_BRAND_BRANCH AS gb');
         $builder->select('gb.idx, gb.brandCode, gb.corpCode, gb.applyCorp, cp.corpName, gb.isUse');
         $builder->join('tbl_corp AS cp', 'gb.applyCorp = cp.corpCode');
         $builder->where('gb.brandCode', $brandCode);
@@ -34,7 +33,7 @@ class GlobalPriceSModel extends ReplicaModel
 
     public function getApplyCorpList($brandCode, $corpCode)
     {
-        $builder = $this->db->table('tbl_globalBrandBranch AS gb');
+        $builder = $this->db->table('GLOBAL_BRAND_BRANCH AS gb');
         $builder->select('gb.idx, gb.brandCode, gb.corpCode,gb.applyCorp,  cp.corpName, gb.isUse');
         $builder->join('tbl_corp AS cp', 'gb.applyCorp = cp.corpCode');
         $builder->where('gb.brandCode', $brandCode);
@@ -48,7 +47,7 @@ class GlobalPriceSModel extends ReplicaModel
 
     public function getCategoryCodeList($data)
     {
-        $builder = $this->db->table('tbl_globalBrandCategory');
+        $builder = $this->db->table('GLOBAL_BRAND_CATEGORY');
         $builder->select('corpCode, pubCode,  pPubCode, codeName, codeLevel, isView, isDel');
         $builder->where('corpCode', $data['corpCode']);
         $builder->where('codeLevel', $data['lvl']);
@@ -67,7 +66,7 @@ class GlobalPriceSModel extends ReplicaModel
 
     public function getTreamentCodeList($data)
     {
-        $builder = $this->db->table('tbl_globalBrandTreatment AS gt');
+        $builder = $this->db->table('GLOBAL_BRAND_TREATMENT AS gt');
         $builder->select('gt.treatmentCode, gt.cate1, gt.cate2, gt.treatmentName, gt.treatmentMemo, gt.isView, gt.isDel');
 
         if (!empty($data['schBranch'])) {
@@ -115,7 +114,7 @@ class GlobalPriceSModel extends ReplicaModel
 
     public function getTreamentPriceList($data)
     {
-        $builder = $this->db->table('tbl_globalBrandPrice AS gp');
+        $builder = $this->db->table('GLOBAL_BRAND_PRICE AS gp');
         $builder->select('gp.idx, gp.applyCorp, cp.corpName, gp.treatmentIdx, gp.price, gp.memo, gp.isView, gp.isDel');
         $builder->join('tbl_corp AS cp', 'gp.applyCorp = cp.corpCode');
         $builder->where('gp.isDel', 'N');
@@ -134,7 +133,7 @@ class GlobalPriceSModel extends ReplicaModel
 
     public function getParentCategoryInfo($idx)
     {
-        $builder = $this->db->table('tbl_globalBrandCategory');
+        $builder = $this->db->table('GLOBAL_BRAND_CATEGORY');
         $builder->select('corpCode, pubCode, pPubCode, codeName, codeLevel, isView, isDel');
         $builder->where('pubCode', $idx);
 
@@ -145,7 +144,7 @@ class GlobalPriceSModel extends ReplicaModel
 
     public function getChildCategoryInfo($idx)
     {
-        $builder = $this->db->table('tbl_globalBrandCategory');
+        $builder = $this->db->table('GLOBAL_BRAND_CATEGORY');
         $builder->select('corpCode, pubCode, pPubCode, codeName, codeLevel, isView, isDel');
         $builder->where('pPubCode', $idx);
 
@@ -156,7 +155,7 @@ class GlobalPriceSModel extends ReplicaModel
 
     public function getChildTreatmentInfo($idx)
     {
-        $builder = $this->db->table('tbl_globalBrandTreatment');
+        $builder = $this->db->table('GLOBAL_BRAND_TREATMENT');
         $builder->select('brandCode, applyCorp, treatmentCode, cate1, cate2, treatmentName, treatmentMemo, isView, isDel');
         $builder->where('cate2', $idx);
 
@@ -169,7 +168,7 @@ class GlobalPriceSModel extends ReplicaModel
 
     public function getChildPriceInfo($idx)
     {
-        $builder = $this->db->table('tbl_globalBrandPrice');
+        $builder = $this->db->table('GLOBAL_BRAND_PRICE');
         $builder->select('idx, applyCorp, treatmentIdx, price, memo, isView, isDel');
         $builder->where('treatmentIdx', $idx);
 
@@ -180,7 +179,7 @@ class GlobalPriceSModel extends ReplicaModel
 
     public function getTreatmentInfo($idx)
     {
-        $builder = $this->db->table('tbl_globalBrandTreatment');
+        $builder = $this->db->table('GLOBAL_BRAND_TREATMENT');
         $builder->select('brandCode, applyCorp, treatmentCode, cate1, cate2, treatmentName, treatmentMemo, isView, isDel');
         $builder->where('treatmentCode', $idx);
 
@@ -193,7 +192,7 @@ class GlobalPriceSModel extends ReplicaModel
 
     public function getPriceInfo($idx)
     {
-        $builder = $this->db->table('tbl_globalBrandPrice AS gp');
+        $builder = $this->db->table('GLOBAL_BRAND_PRICE AS gp');
         $builder->select('gp.idx, gp.applyCorp, cp.corpName, gp.treatmentIdx, gp.price, gp.memo, gp.isView, gp.isDel');
         $builder->join('tbl_corp AS cp', 'gp.applyCorp = cp.corpCode');
         $builder->where('gp.idx', $idx);
@@ -205,7 +204,7 @@ class GlobalPriceSModel extends ReplicaModel
 
     public function getCategorySortCount($brandCode, $corpCode, $lvl, $pIdx)
     {
-        $builder = $this->db->table('tbl_globalBrandCategory');
+        $builder = $this->db->table('GLOBAL_BRAND_CATEGORY');
         $builder->select('IFNULL(MAX(sort), 0) AS cnt');
         $builder->where('brandCode', $brandCode);
         $builder->where('corpCode', $corpCode);
@@ -223,7 +222,7 @@ class GlobalPriceSModel extends ReplicaModel
 
     public function getTreatmentSortCount($brandCode, $corpCode, $pIdx)
     {
-        $builder = $this->db->table('tbl_globalBrandTreatment');
+        $builder = $this->db->table('GLOBAL_BRAND_TREATMENT');
         $builder->select('IFNULL(MAX(sort), 0) AS cnt');
         $builder->where('brandCode', $brandCode);
         $builder->where('applyCorp', $corpCode);
@@ -233,5 +232,179 @@ class GlobalPriceSModel extends ReplicaModel
         $data = $builder->get()->getRowArray(0);
 
         return $data;
+    }
+
+    public function registerCategoryProc($data)
+    {
+        $builder = $this->db->table('GLOBAL_BRAND_CATEGORY');
+        $result = $builder->insert($data);
+
+        return $result;
+    }
+
+    public function registerTreatmentProc($data)
+    {
+        $builder = $this->db->table('GLOBAL_BRAND_TREATMENT');
+        $result = $builder->insert($data);
+
+        return $result;
+    }
+
+    public function registerPriceProc($data)
+    {
+        $builder = $this->db->table('GLOBAL_BRAND_PRICE');
+        $result = $builder->insert($data);
+
+        return $result;
+    }
+
+    public function modifyCategoryProc($data, $where)
+    {
+        $builder = $this->db->table('GLOBAL_BRAND_CATEGORY');
+
+        if (count($where) > 0) {
+            foreach ($where as $key => $val) {
+                $builder->where($key, $val);
+            }
+        }
+
+        $result = $builder->update($data);
+
+        return $result;
+    }
+
+    public function modifyTreatmentProc($data, $where)
+    {
+        $builder = $this->db->table('GLOBAL_BRAND_TREATMENT');
+
+        if (count($where) > 0) {
+            foreach ($where as $key => $val) {
+                $builder->where($key, $val);
+            }
+        }
+
+        $result = $builder->update($data);
+
+        return $result;
+    }
+
+    public function modifyPriceProc($data, $where)
+    {
+        $builder = $this->db->table('GLOBAL_BRAND_PRICE');
+        if (count($where) > 0) {
+            foreach ($where as $key => $val) {
+                $builder->where($key, $val);
+            }
+        }
+
+        $result = $builder->update($data);
+
+        return $result;
+    }
+
+    public function deleteCategoryProc($data, $where)
+    {
+        $builder = $this->db->table('GLOBAL_BRAND_CATEGORY');
+        if (count($where) > 0) {
+            foreach ($where as $key => $val) {
+                $builder->where($key, $val);
+            }
+        }
+
+        $result = $builder->update($data);
+
+        return $result;
+    }
+
+    public function deleteTreatmentProc($data, $where)
+    {
+        $builder = $this->db->table('GLOBAL_BRAND_TREATMENT');
+        if (count($where) > 0) {
+            foreach ($where as $key => $val) {
+                $builder->where($key, $val);
+            }
+        }
+
+        $result = $builder->update($data);
+
+        return $result;
+    }
+
+    public function deletePriceProc($data, $where)
+    {
+        $builder = $this->db->table('GLOBAL_BRAND_PRICE');
+        if (count($where) > 0) {
+            foreach ($where as $key => $val) {
+                $builder->where($key, $val);
+            }
+        }
+
+        $result = $builder->update($data);
+
+        return $result;
+    }
+
+    public function registerApplyCorpProc($data)
+    {
+        $builder = $this->db->table('GLOBAL_BRAND_BRANCH');
+        $result = $builder->insert($data);
+
+        return $result;
+    }
+
+    public function modifyApplyCorpProc($data, $where)
+    {
+        $builder = $this->db->table('GLOBAL_BRAND_BRANCH');
+        if (count($where) > 0) {
+            foreach ($where as $key => $val) {
+                $builder->where($key, $val);
+            }
+        }
+
+        $result = $builder->update($data);
+
+        return $result;
+    }
+
+    public function categorySortProc($data, $where)
+    {
+        $builder = $this->db->table('GLOBAL_BRAND_CATEGORY');
+        if (count($where) > 0) {
+            foreach ($where as $key => $val) {
+                $builder->where($key, $val);
+            }
+        }
+
+        $result = $builder->update($data);
+
+        return $result;
+    }
+
+    public function treatmentSortProc($data, $where)
+    {
+        $builder = $this->db->table('GLOBAL_BRAND_TREATMENT');
+        if (count($where) > 0) {
+            foreach ($where as $key => $val) {
+                $builder->where($key, $val);
+            }
+        }
+
+        $result = $builder->update($data);
+
+        return $result;
+    }
+
+    public function deleteApplyCorpProc($data, $where)
+    {
+        $builder = $this->db->table('GLOBAL_BRAND_BRANCH');
+        if (count($where) > 0) {
+            foreach ($where as $key => $val) {
+                $builder->where($key, $val);
+            }
+        }
+
+        $result = $builder->update($data);
+
+        return $result;
     }
 }

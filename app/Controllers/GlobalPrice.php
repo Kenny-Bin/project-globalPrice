@@ -12,7 +12,7 @@ class GlobalPrice extends BaseController
         $globalPriceService = GlobalPriceService::factory();
 
         $corpCode = $this->request->getPostGet('corpCode');
-        if ($corpCode == "") $corpCode = 'T00087';    // 기본값 톡스앤필 (브랜드 영문)
+        if ($corpCode == "") $corpCode = 'CODE';    // 지점 기본값
         $brandCode = $this->request->getPostGet('brandCode');
         if ($brandCode == "") $brandCode = substr($corpCode, 0, 1);
         $schBranch = $this->request->getPostGet('schBranch');

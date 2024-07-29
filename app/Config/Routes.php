@@ -36,21 +36,28 @@ $routes->set404Override();
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.    $routes->post('reservationMng/_chgIsUse', 'Reservation::chgIsUse');
 
-// 글로벌 홈페이지 가격표
-$routes->get('brandRegularPriceMng', 'GlobalPrice::index');
-$routes->post('brandRegularPriceMng', 'GlobalPrice::index');
-$routes->post('brandRegularPriceMng/_index', 'GlobalPrice::postIndex');
-$routes->get('brandRegularPriceMng/register', 'GlobalPrice::register');
-$routes->post('brandRegularPriceMng/_register', 'GlobalPrice::postRegister');
-$routes->post('brandRegularPriceMng/registerProc', 'GlobalPrice::registerProc');
-$routes->get('brandRegularPriceMng/branchProc', 'GlobalPrice::branchProc');
-$routes->post('brandRegularPriceMng/branchProc', 'GlobalPrice::branchProc');
-$routes->get('brandRegularPriceMng/_getBranch', 'GlobalPrice::getBranch');
-$routes->post('brandRegularPriceMng/modifyProc', 'GlobalPrice::modifyProc');
-$routes->post('brandRegularPriceMng/deleteProc', 'GlobalPrice::deleteProc');
-$routes->post('brandRegularPriceMng/categorySortProc', 'GlobalPrice::categorySortProc');
-$routes->post('brandRegularPriceMng/applyCorpProc', 'GlobalPrice::applyCorpProc');
-$routes->post('brandRegularPriceMng/chgState', 'GlobalPrice::chgState');
+$routes->get('login', 'Login::index');
+$routes->post('loginProc', 'Login::loginProc');
+$routes->post('logout', 'Login::logout');
+
+$routes->group('', ['filter' => 'authGuard'], function ($routes){
+
+    // 글로벌 홈페이지 가격표
+    $routes->get('brandRegularPriceMng', 'GlobalPrice::index');
+    $routes->post('brandRegularPriceMng', 'GlobalPrice::index');
+    $routes->post('brandRegularPriceMng/_index', 'GlobalPrice::postIndex');
+    $routes->get('brandRegularPriceMng/register', 'GlobalPrice::register');
+    $routes->post('brandRegularPriceMng/_register', 'GlobalPrice::postRegister');
+    $routes->post('brandRegularPriceMng/registerProc', 'GlobalPrice::registerProc');
+    $routes->get('brandRegularPriceMng/branchProc', 'GlobalPrice::branchProc');
+    $routes->post('brandRegularPriceMng/branchProc', 'GlobalPrice::branchProc');
+    $routes->get('brandRegularPriceMng/_getBranch', 'GlobalPrice::getBranch');
+    $routes->post('brandRegularPriceMng/modifyProc', 'GlobalPrice::modifyProc');
+    $routes->post('brandRegularPriceMng/deleteProc', 'GlobalPrice::deleteProc');
+    $routes->post('brandRegularPriceMng/categorySortProc', 'GlobalPrice::categorySortProc');
+    $routes->post('brandRegularPriceMng/applyCorpProc', 'GlobalPrice::applyCorpProc');
+    $routes->post('brandRegularPriceMng/chgState', 'GlobalPrice::chgState');
+});
 
 /*
  * --------------------------------------------------------------------
