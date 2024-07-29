@@ -1,0 +1,6 @@
+{
+    "require": {
+        "phpoffice/phpspreadsheet": "^1.25",
+        "seunmatt/codeigniter-log-viewer": "^2.0"
+    }
+}
