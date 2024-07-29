@@ -119,14 +119,13 @@ class Login extends BaseController
                 }
             }
 
-            $result['result'] = 'SUCCESS';
-            $result['msg'] = '2차 로그인 미사용';
-
             $loginLogMsg = '로그인 성공';
             $this->setLoginLog($userIDInfo, $loginLogMsg, 'SUCCESS');
 
             $pwErrorCnt = 0;    // 유효성 체크 완료. 비밀번호 틀린 횟수 초기화
             $this->setLoginInfo($userIDInfo, $pwErrorCnt, $isBlock, 'PASSWORD');
+
+            return redirect()->to('./');
         }
 
         return json_encode($result);
