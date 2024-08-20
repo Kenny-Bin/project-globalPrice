@@ -1,32 +1,31 @@
 # globalPrice
 
-PHP 설치 <br>
-Composer 설치 <br>
-Codeigniter 설치 <br>
-- composer init
-- composer create-project codeigniter4/appstarter 프로젝트명
+### 로컬 환경 구성 <br>
+1. winNMP 사용
+   - php 설치
+   - composer 설치
 
-php extension 추가 확장
-- openssl
-- mbstring
-- intl
-- gd2
-- fileinfo
-- ftp
-- curl
-- mysqli
-- calendar
-- gettext
-- iconv
-- json
-- phar
-- sockets
-- tokenizer
-- zip
-- bz2
-- exif
+2. php extension 추가 확장
+   - openssl
+   - mbstring
+   - intl
+   - gd2
+   - fileinfo
+   - ftp
+   - curl
+   - mysqli
+   - calendar
+   - gettext
+   - iconv
+   - json
+   - phar
+   - sockets
+   - tokenizer
+   - zip
+   - bz2
+   - exif
 
-nginx 세팅
+3. nginx 세팅
 
 server {
 
@@ -35,7 +34,7 @@ server {
 		server_name	localhost;				# Do Not Change ! Security Risk !
 
 		# This directive is modified automatically by WinNMP.exe for portability.
-		root		"path";
+		root		"your_path"; ( 프로젝트 위치 확인 후 수정 )
 		autoindex on;
 
 		index       index.php;
@@ -113,7 +112,11 @@ server {
 
 		# How to allow access from LAN and Internet to your local project:
 		# http://WinNMP.wtriple.com/howtos.php#How-to-allow-access-from-LAN-and-Internet-to-your-local-project
-
-
-
 	}
+
+4. composer
+    - composer init
+
+5. codeigniter 설치 및 프로젝트 생성
+ - composer create-project codeigniter4/appstarter 프로젝트명
+
