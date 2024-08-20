@@ -1,8 +1,8 @@
 # globalPrice
 
-PHP 설치
-Composer 설치
-Codeigniter 설치
+PHP 설치 <br>
+Composer 설치 <br>
+Codeigniter 설치 <br>
 - composer init
 - composer create-project codeigniter4/appstarter 프로젝트명
 
