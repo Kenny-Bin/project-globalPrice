@@ -25,7 +25,8 @@ writable/cache/*
 writable/sitelogs/*
 app/Config/App.php
 app/Controllers/BaseController.php
-tests
+
+vendor
 vendor/*
 
-.vscode/*
+.vscode/*`
